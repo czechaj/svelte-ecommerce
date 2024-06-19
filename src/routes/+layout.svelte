@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
 	import '../app.css';
+	let { children } = $props();
 </script>
 
-<slot></slot>
+<div class="h-screen bg-background">
+	{@render children()}
+</div>
 
 <style></style>
