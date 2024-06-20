@@ -7,28 +7,32 @@
 		subtitle: string;
 		body: string;
 	};
+
+	let { data } = $props();
+
+	let { productData, salesData, userData } = $derived(data);
 </script>
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 	<div>
 		{@render dashboardCard({
 			title: 'Sales',
-			subtitle: `${formatNumber(20000)} Orders`,
-			body: formatCurrency(10000000)
+			subtitle: `${formatNumber(salesData.numberOfSales)} Orders`,
+			body: formatCurrency(salesData.amount)
 		})}
 	</div>
 	<div>
 		{@render dashboardCard({
-			title: 'Sales',
-			subtitle: `${formatNumber(20000)} Orders`,
-			body: formatCurrency(10000000)
+			title: 'Customers',
+			subtitle: `${formatCurrency(userData.avgValuePerUser)} Avg Value`,
+			body: formatNumber(userData.userCount)
 		})}
 	</div>
 	<div>
 		{@render dashboardCard({
-			title: 'Sales',
-			subtitle: `${formatNumber(20000)} Orders`,
-			body: formatCurrency(10000000)
+			title: 'Active Products',
+			subtitle: `${formatNumber(productData.inactiveCount)} Inactive Products`,
+			body: formatNumber(productData.activeCount)
 		})}
 	</div>
 </div>
