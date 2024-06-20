@@ -1,15 +1,16 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { Button } from '$lib/components/ui/button';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import * as Table from '$lib/components/ui/table';
 	import { formatCurrency, formatNumber } from '$lib/utils.js';
 	import { CheckCircle, MoreVertical, XCircle } from 'lucide-svelte';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 
 	let { data } = $props();
 </script>
 
-<div class="flex items-center justify-between gap-4">
+<div class="flex items-center justify-between">
 	<PageHeader>Products</PageHeader>
 	<Button href="/admin/products/new">New</Button>
 </div>
@@ -58,6 +59,42 @@
 								<DropdownMenu.Item href={`/admn/products/${product.id}/edit`}
 									>Edit</DropdownMenu.Item
 								>
+								<DropdownMenu.Item>
+									<form action="?/toggleAvailability" method="post" use:enhance>
+										<input type="hidden" name="id" value={product.id} />
+										<input
+											type="checkbox"
+											name="isAvailableForPurchase"
+											checked={!product.isAvailableForPurchase}
+											class="hidden"
+										/>
+										<Button size="sm" type="submit" class="w-full">
+											{#if product.isAvailableForPurchase}
+												Deactivate
+											{:else}
+												Activate
+											{/if}
+										</Button>
+									</form>
+								</DropdownMenu.Item>
+								<!-- 	<DropdownMenu.Item
+								><form action="/" method="post" use:enhance>
+									<input type="hidden" name="id" value={product.id} />
+									<input
+										type="checkbox"
+										name="isAvailableForPurchase"
+										checked={!product.isAvailableForPurchase}
+										class="hidden"
+									/>
+									<Button size="sm" type="submit" class="w-full">
+										{#if product.isAvailableForPurchase}
+											Deactivate
+										{:else}
+											Activate
+										{/if}
+									</Button>
+								</form></DropdownMenu.Item
+							> -->
 							</DropdownMenu.Group>
 						</DropdownMenu.Content>
 					</DropdownMenu.Root>

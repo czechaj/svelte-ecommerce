@@ -3,12 +3,12 @@ import { db } from '../../hooks.server';
 
 async function getSalesData() {
 	const data = await db.order.aggregate({
-		_sum: { priceInCents: true },
+		_sum: { pricePaidInCents: true },
 		_count: true
 	});
 
 	return {
-		amount: (data._sum.priceInCents || 0) / 100,
+		amount: (data._sum.pricePaidInCents || 0) / 100,
 		numberOfSales: data._count
 	};
 }
@@ -16,13 +16,13 @@ async function getUserData() {
 	const [userCount, orderData] = await Promise.all([
 		await db.user.count(),
 		await db.order.aggregate({
-			_sum: { priceInCents: true }
+			_sum: { pricePaidInCents: true }
 		})
 	]);
 
 	return {
 		userCount,
-		avgValuePerUser: !userCount ? 0 : (orderData._sum.priceInCents || 0) / userCount / 1000
+		avgValuePerUser: !userCount ? 0 : (orderData._sum.pricePaidInCents || 0) / userCount / 1000
 	};
 }
 async function getProductData() {

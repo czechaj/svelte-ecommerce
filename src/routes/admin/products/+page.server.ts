@@ -1,3 +1,4 @@
+import type { Actions } from '@sveltejs/kit';
 import { db } from '../../../hooks.server';
 import type { PageServerLoad } from './$types';
 
@@ -20,3 +21,18 @@ export const load = (async () => {
 		})
 	};
 }) satisfies PageServerLoad;
+
+export const actions: Actions = {
+	toggleAvailability: async ({ request }) => {
+		const formData = await request.formData();
+		const id = formData.get('id') as string;
+		const isAvailableForPurchase = formData.has('isAvailableForPurchase');
+
+		await db.product.update({
+			where: { id },
+			data: {
+				isAvailableForPurchase
+			}
+		});
+	}
+};
