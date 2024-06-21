@@ -52,50 +52,36 @@
 							<span class="sr-only">Actions</span>
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content>
-							<DropdownMenu.Group>
-								<DropdownMenu.Item href={`/admn/products/${product.id}/download`} download
-									>Download</DropdownMenu.Item
-								>
-								<DropdownMenu.Item href={`/admn/products/${product.id}/edit`}
-									>Edit</DropdownMenu.Item
-								>
-								<DropdownMenu.Item>
-									<form action="?/toggleAvailability" method="post" use:enhance>
-										<input type="hidden" name="id" value={product.id} />
-										<input
-											type="checkbox"
-											name="isAvailableForPurchase"
-											checked={!product.isAvailableForPurchase}
-											class="hidden"
-										/>
-										<Button size="sm" type="submit" class="w-full">
-											{#if product.isAvailableForPurchase}
-												Deactivate
-											{:else}
-												Activate
-											{/if}
-										</Button>
-									</form>
-								</DropdownMenu.Item>
-								<!-- 	<DropdownMenu.Item
-								><form action="/" method="post" use:enhance>
-									<input type="hidden" name="id" value={product.id} />
-									<input
-										type="checkbox"
-										name="isAvailableForPurchase"
-										checked={!product.isAvailableForPurchase}
-										class="hidden"
-									/>
-									<Button size="sm" type="submit" class="w-full">
+							<DropdownMenu.Item href={`/admin/products/${product.id}/download`} download
+								>Download</DropdownMenu.Item
+							>
+							<DropdownMenu.Item href={`/admin/products/${product.id}/edit`}>Edit</DropdownMenu.Item
+							>
+							<form action="?/toggleAvailability" method="post" use:enhance>
+								<input type="hidden" name="id" value={product.id} />
+								<input
+									type="checkbox"
+									name="isAvailableForPurchase"
+									checked={!product.isAvailableForPurchase}
+									class="hidden"
+								/>
+								<button class="w-full">
+									<DropdownMenu.Item type="submit">
 										{#if product.isAvailableForPurchase}
 											Deactivate
 										{:else}
 											Activate
 										{/if}
-									</Button>
-								</form></DropdownMenu.Item
-							> -->
-							</DropdownMenu.Group>
+									</DropdownMenu.Item>
+								</button>
+							</form>
+							<form action="?/deleteProduct" method="post" use:enhance>
+								<input type="hidden" name="id" value={product.id} />
+
+								<button class="w-full text-destructive" disabled={product._count.order > 0}>
+									<DropdownMenu.Item type="submit">Delete</DropdownMenu.Item>
+								</button>
+							</form>
 						</DropdownMenu.Content>
 					</DropdownMenu.Root>
 				</Table.Cell>

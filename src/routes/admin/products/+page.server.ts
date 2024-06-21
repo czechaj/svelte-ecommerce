@@ -1,4 +1,5 @@
 import type { Actions } from '@sveltejs/kit';
+import fs from 'fs/promises';
 import { db } from '../../../hooks.server';
 import type { PageServerLoad } from './$types';
 
@@ -34,5 +35,21 @@ export const actions: Actions = {
 				isAvailableForPurchase
 			}
 		});
+	},
+	deleteProduct: async ({ request }) => {
+		const formData = await request.formData();
+		const id = formData.get('id') as string;
+
+		const product = await db.product.findUnique({
+			where: { id },
+			select: { _count: { select: { order: true } } }
+		});
+
+		if (product && product._count.order > 0) return;
+
+		const deletedProduct = await db.product.delete({ where: { id } });
+
+		await fs.unlink(deletedProduct.filePath);
+		await fs.unlink(`static${deletedProduct.imagePath}`);
 	}
 };
