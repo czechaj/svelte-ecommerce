@@ -10,3 +10,8 @@ export const ProductFormSchema = z.object({
 		.refine((f) => f.size > 0 && f.size < 100000, 'Image size should between 1-100KB')
 		.refine((f) => f.type.startsWith('image/'), 'Wrong format')
 });
+export const UserFormSchema = z.object({
+	name: z.string().min(3, 'Too short'),
+	email: z.string().email(),
+	isAdmin: z.boolean().default(false)
+});
