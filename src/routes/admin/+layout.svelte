@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { cn } from '$lib/utils';
+	import '../../app.css';
 	let { children } = $props();
 	let pathname = $derived($page.url.pathname);
 </script>

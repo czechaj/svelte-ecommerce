@@ -45,7 +45,7 @@ export const actions: Actions = {
 			select: { _count: { select: { order: true } } }
 		});
 
-		if (product && product._count.order > 0) return;
+		if (product && product._count.order > 0) throw new Error('Nasıl');
 
 		const deletedProduct = await db.product.delete({ where: { id } });
 

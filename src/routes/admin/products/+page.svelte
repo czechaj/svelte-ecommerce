@@ -86,7 +86,10 @@
 								<form action="?/deleteProduct" method="post" use:enhance>
 									<input type="hidden" name="id" value={product.id} />
 
-									<button class="w-full text-destructive" disabled={product._count.order > 0}>
+									<button
+										class="w-full text-destructive disabled:pointer-events-none disabled:opacity-40"
+										disabled={product._count.order > 0}
+									>
 										<DropdownMenu.Item type="submit">Delete</DropdownMenu.Item>
 									</button>
 								</form>

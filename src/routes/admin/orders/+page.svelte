@@ -13,7 +13,7 @@
 	<PageHeader>Orders</PageHeader>
 </div>
 
-{#if data.orders.length === 0}
+{#if !data?.orders || !data?.orders?.length}
 	<p>No orders yet</p>
 {:else}
 	{@render orderTable()}
@@ -43,10 +43,6 @@
 								<span class="sr-only">Actions</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content>
-								<DropdownMenu.Item href={`/admin/orders/${order.id}/download`} download
-									>Download</DropdownMenu.Item
-								>
-
 								<form action="?/deleteOrder" method="post" use:enhance>
 									<input type="hidden" name="id" value={order.id} />
 

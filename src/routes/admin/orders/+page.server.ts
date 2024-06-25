@@ -27,12 +27,6 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const id = formData.get('id') as string;
 
-		const order = await db.order.findUnique({
-			where: { id }
-		});
-
-		if (order && order._count.order > 0) return;
-
 		const deletedOrder = await db.order.delete({ where: { id } });
 		return deletedOrder;
 	}
