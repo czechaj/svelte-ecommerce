@@ -8,7 +8,7 @@ export const load = (async () => {
 		users: await db.user.findMany({
 			select: {
 				id: true,
-				name: true,
+				username: true,
 				email: true,
 				isAdmin: true,
 				_count: {
@@ -17,7 +17,7 @@ export const load = (async () => {
 					}
 				}
 			},
-			orderBy: { name: 'asc' }
+			orderBy: { username: 'asc' }
 		})
 	};
 }) satisfies PageServerLoad;

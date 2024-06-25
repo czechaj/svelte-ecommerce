@@ -26,10 +26,10 @@
 	enctype="multipart/form-data"
 	use:enhance
 >
-	<Form.Field {form} name="name">
+	<Form.Field {form} name="username">
 		<Form.Control let:attrs>
-			<Form.Label>Name</Form.Label>
-			<Input {...attrs} bind:value={$formData.name} />
+			<Form.Label>Username</Form.Label>
+			<Input {...attrs} bind:value={$formData.username} />
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>

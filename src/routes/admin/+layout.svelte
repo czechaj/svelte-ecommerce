@@ -11,7 +11,6 @@
 	{@render navLink({ href: '/admin/products', text: 'products' })}
 	{@render navLink({ href: '/admin/users', text: 'users' })}
 	{@render navLink({ href: '/admin/orders', text: 'orders' })}
-	{@render navLink({ href: '/admin/sales', text: 'sales' })}
 	<!-- logout button -->
 </Navbar>
 
