@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { cn } from '$lib/utils';
@@ -12,6 +13,17 @@
 	{@render navLink({ href: '/admin/products', text: 'products' })}
 	{@render navLink({ href: '/admin/users', text: 'users' })}
 	{@render navLink({ href: '/admin/orders', text: 'orders' })}
+	<form
+		class={cn(
+			'p-4 capitalize hover:bg-secondary hover:text-secondary-foreground focus-visible:bg-secondary focus-visible:text-secondary-foreground'
+		)}
+		action="/?/logout"
+		method="post"
+		use:enhance
+	>
+		<button class="w3-bar-item w3-button">Logout</button>
+	</form>
+
 	<!-- logout button -->
 </Navbar>
 
