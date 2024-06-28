@@ -29,7 +29,7 @@ export const actions: Actions = {
 			await db.user.update({
 				where: { id },
 				data: {
-					name: form.data.name,
+					username: form.data.username,
 					email: form.data.email,
 					isAdmin: form.data.isAdmin
 				}

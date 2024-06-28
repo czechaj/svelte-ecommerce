@@ -20,10 +20,10 @@
 
 <PageHeader>Edit User</PageHeader>
 <form action={`/admin/users/${$page.params.id}/edit`} method="post" class="space-y-8" use:enhance>
-	<Form.Field {form} name="name">
+	<Form.Field {form} name="username">
 		<Form.Control let:attrs>
-			<Form.Label>Name</Form.Label>
-			<Input {...attrs} bind:value={$formData.name} />
+			<Form.Label>Username</Form.Label>
+			<Input {...attrs} bind:value={$formData.username} />
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
