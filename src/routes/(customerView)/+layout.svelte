@@ -13,6 +13,8 @@
 	{@render navLink({ href: '/', text: 'Home' })}
 
 	{#if data.loggedIn}
+		{@render navLink({ href: '/profile', text: 'Profile' })}
+
 		<form
 			class={cn(
 				'p-4 capitalize hover:bg-secondary hover:text-secondary-foreground focus-visible:bg-secondary focus-visible:text-secondary-foreground'

@@ -16,6 +16,11 @@ export const UserFormSchema = z.object({
 	email: z.string().email(),
 	isAdmin: z.boolean().default(false)
 });
+export const ProfileFormSchema = z.object({
+	username: z.string().min(3, 'Too short'),
+	email: z.string().email(),
+	password: z.string().min(3)
+});
 
 export const LoginFormSchema = z.object({
 	username: z.string().min(3),
