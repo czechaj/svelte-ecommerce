@@ -14,7 +14,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const { session, user } = await lucia.validateSession(sessionId);
 	if (session && session.fresh) {
-		console.log('🚀 ~ consthandle:Handle= ~ session:', session);
 		const sessionCookie = lucia.createSessionCookie(session.id);
 		// sveltekit types deviates from the de-facto standard
 		// you can use 'as any' too
@@ -30,6 +29,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			...sessionCookie.attributes
 		});
 	}
+
 	event.locals.user = user;
 	event.locals.session = session;
 	return resolve(event);
