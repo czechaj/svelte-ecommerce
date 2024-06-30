@@ -7,7 +7,11 @@ import { fail, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load = (async () => {
+export const load = (async ({ locals }) => {
+	if (locals.session?.userId) {
+		return redirect(302, '/');
+	}
+
 	return {
 		form: await superValidate(zod(SignupFormSchema))
 	};
