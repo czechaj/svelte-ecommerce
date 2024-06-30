@@ -1,7 +1,6 @@
 import { db } from '../../../../hooks.server.js';
 
 export const POST = async ({ request }) => {
-	console.log('🚀 ~ POST ~ request:', request);
 	const { userId, productId, pricePaidInCents } = await request.json();
 
 	const newOrder = await db.order.create({
