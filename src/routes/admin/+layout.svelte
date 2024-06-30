@@ -9,6 +9,7 @@
 </script>
 
 <Navbar>
+	{@render navLink({ href: '/', text: 'customer view' })}
 	{@render navLink({ href: '/admin', text: 'admin' })}
 	{@render navLink({ href: '/admin/products', text: 'products' })}
 	{@render navLink({ href: '/admin/users', text: 'users' })}
